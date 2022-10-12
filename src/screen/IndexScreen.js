@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View, ScrollView, } from 'react-native';
-import ChildrenExample from './components/ChildrenExample';
-import ListItems from './components/ListItems';
-import NavigationButton from './components/NavigationButton';
+import ChildrenExample from '../components/ChildrenExample';
+import ListItems from '../components/ListItems';
+import NavigationButton from '../components/NavigationButton';
 
 const IndexScreen =({navigation}) => {
   return (
         <View style={styles.container}>
-            <NavigationButton  screenName="ScreenOne" navigation={navigation} />
-            <NavigationButton screenName="ScreenTwo" navigation={navigation} />
+          <ChildrenExample title="This is Index Screen">
+              <NavigationButton screenName="ScreenOne" navigation={navigation} />
+              <NavigationButton screenName="ScreenTwo" navigation={navigation} />
+              <NavigationButton screenName="Add" navigation={navigation} />
+           
             <Text style={styles.heading}>Fruit List</Text>
 
             <ScrollView  horizontal={false}>
@@ -37,6 +40,7 @@ const IndexScreen =({navigation}) => {
                     image={require('../../assets/img/mango.png')}
                 />           
             </ScrollView>
+          </ChildrenExample>
     </View>
     
     

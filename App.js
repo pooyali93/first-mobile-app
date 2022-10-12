@@ -1,30 +1,25 @@
-import IndexScreen from './src/screens/IndexScreen';
+import IndexScreen from './src/screen/IndexScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ScreenOne from './src/screens/ScreenOne';
-import ScreenTwo from './src/screens/ScreenTwo';
+import ScreenOne from './src/screen/ScreenOne';
+import ScreenTwo from './src/screen/ScreenTwo';
 import { StyleSheet } from 'react-native';
+import AddItemScreen from './src/screen/AddItemScreen';
+import ListViewScreen from './src/screen/ListViewScreen';
 
 
 const Stack = createNativeStackNavigator();
 const App = () =>{
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName='Index' 
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: 'white',
-          borderWidth:1,
-          borderColor:'#006a6a',
-          
-        },
-        headerTintColor: '#006a6a',
-        headerTitleStyle: {
-        fontWeight: 'bold',
-        },
-      }}>
+      <Stack.Navigator initialRouteName='List'>
+      <Stack.Screen 
+          name='List'
+          component={ListViewScreen}
+          options={{title: "View all items" }}
+        />
         <Stack.Screen 
-          name='Index'
+          name='IndexScreen'
           component={IndexScreen}
           options={{title: "Shop Organic Fruit & Veg" }}
         />
@@ -37,6 +32,11 @@ const App = () =>{
           name='ScreenTwo'
           component={ScreenTwo}
           options={{title: "Screen 2" }}
+        />
+        <Stack.Screen
+          name='Add'
+          component={AddItemScreen}
+          options={{title: "Add a new item" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -12,12 +12,7 @@ const Stack = createNativeStackNavigator();
 const App = () =>{
   return (
     <NavigationContainer >
-      <Stack.Navigator initialRouteName='List'>
-      <Stack.Screen 
-          name='List'
-          component={ListViewScreen}
-          options={{title: "View all items" }}
-        />
+      <Stack.Navigator initialRouteName='IndexScreen'>
         <Stack.Screen 
           name='IndexScreen'
           component={IndexScreen}
@@ -37,6 +32,11 @@ const App = () =>{
           name='Add'
           component={AddItemScreen}
           options={{title: "Add a new item" }}
+        />
+        <Stack.Screen 
+          name='List'
+          component={ListViewScreen}
+          options={{title: "View all items" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

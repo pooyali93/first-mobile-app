@@ -13,9 +13,10 @@ const styles = StyleSheet.create({
 
     itemContainer: {
         borderWidth:1,
-        borderColor:'#006a6a',
+        borderColor:'#cfcfd1',
         borderRadius:5,
         marginVertical:5,
+        backgroundColor:'#ffffff'
       },
       title:{
         fontSize:20, 

@@ -53,6 +53,17 @@ const ListViewScreen = () => {
             );
         }}
         />
+]
+const ListViewScreen = () => {
+    const [items, setItems] = useState(dummyData);
+    
+  return (
+    <View>
+        <FlatList
+            data={items}
+            keyExtractor={(e) => e.id.toString()}
+            renderItem={(e) => <Text> {e.title} </Text>}
+        />
     </View>
   )
 };
@@ -90,5 +101,6 @@ const styles = StyleSheet.create({
         alignSelf:'flex-start',
     },
 });
+const styles = StyleSheet.create({});
 
 export default ListViewScreen

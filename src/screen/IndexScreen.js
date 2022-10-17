@@ -10,6 +10,7 @@ const IndexScreen =({navigation}) => {
               <NavigationButton screenName="ScreenOne" navigation={navigation} />
               <NavigationButton screenName="ScreenTwo" navigation={navigation} />
               <NavigationButton screenName="Add" navigation={navigation} />
+              <NavigationButton screenName="ViewList" navigation={navigation} />
            
             <Text style={styles.heading}>Fruit List</Text>
 
@@ -49,6 +50,8 @@ const IndexScreen =({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
+    //width:'100%',
+    backgroundColor:'#f2f2f6',
     //width:'50%',
     backgroundColor:'#fffcf6',
     alignItems:'center',

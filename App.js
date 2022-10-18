@@ -13,12 +13,6 @@ const App = () =>{
   return (
     <NavigationContainer >
       <Stack.Navigator initialRouteName='IndexScreen'>
-      <Stack.Navigator initialRouteName='List'>
-      <Stack.Screen 
-          name='List'
-          component={ListViewScreen}
-          options={{title: "View all items" }}
-        />
         <Stack.Screen 
           name='IndexScreen'
           component={IndexScreen}
@@ -40,7 +34,7 @@ const App = () =>{
           options={{title: "Add a new item" }}
         />
         <Stack.Screen 
-          name='List'
+          name='ViewList'
           component={ListViewScreen}
           options={{title: "View all items" }}
         />

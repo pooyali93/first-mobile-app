@@ -31,42 +31,33 @@ const dummyData = [
 const ListViewScreen = () => {
     const [items, setItems] = useState(dummyData);
   return (
-    <View  style={styles.mainContainer}>
-        <FlatList 
-            data={items}
-            keyExtractor={(e) => e.id.toString()}
-            renderItem={({item}) =>  {
-            return (
-                <View style={styles.itemContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>
-                            {item.date.toLocaleDateString()}
-                        </Text>
-                        <Text>
-                            {item.date.toLocaleTimeString()}
-                        </Text>
+        <View  style={styles.mainContainer}>
+            <FlatList 
+                data={items}
+                keyExtractor={(e) => e.id.toString()}
+                renderItem={({item}) =>  {
+                return (
+                    <View style={styles.itemContainer}>
+                        <View style={styles.dateContainer}>
+                            <Text style={styles.dateText}>
+                                {item.date.toLocaleDateString()}
+                            </Text>
+                            <Text>
+                                {item.date.toLocaleTimeString()}
+                            </Text>
+                        </View>
+                            <Text style={styles.titleText}> 
+                                {item.title}
+                            </Text>
                     </View>
-                        <Text style={styles.titleText}> 
-                            {item.title}
-                        </Text>
-                </View>
-            );
-        }}
-        />
-]
-const ListViewScreen = () => {
-    const [items, setItems] = useState(dummyData);
-    
-  return (
-    <View>
-        <FlatList
-            data={items}
-            keyExtractor={(e) => e.id.toString()}
-            renderItem={(e) => <Text> {e.title} </Text>}
-        />
-    </View>
-  )
+                );
+                }}
+            />
+        </View>
+    )
 };
+
+
 
 const styles = StyleSheet.create({
     mainContainer: {
@@ -100,7 +91,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignSelf:'flex-start',
     },
-});
-const styles = StyleSheet.create({});
+  });
+
 
 export default ListViewScreen

@@ -9,8 +9,8 @@ const IndexScreen =({navigation}) => {
           <ChildrenExample title="This is Index Screen">
               <NavigationButton screenName="ScreenOne" navigation={navigation} />
               <NavigationButton screenName="ScreenTwo" navigation={navigation} />
-              <NavigationButton screenName="Add" navigation={navigation} />
               <NavigationButton screenName="ViewList" navigation={navigation} />
+  
            
             <Text style={styles.heading}>Fruit List</Text>
 

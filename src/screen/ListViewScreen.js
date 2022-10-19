@@ -1,35 +1,51 @@
-import { useState } from "react";
-import { View, StyleSheet, Text, FlatList} from "react-native"
-
+import { useEffect, useState } from "react";
+import { View, StyleSheet, Text, FlatList, Pressable} from "react-native"
+import {MaterialIcons} from '@expo/vector-icons'
+import uuid from 'react-native-uuid';
 
 const dummyData = [
     {
-        id:-1,
+        id:uuid.v4(),
         title:"This is my first item",
         content:"find your organic fruit amd veg",
         date: new Date()
     },
     {
-        id:-2,
+        id:uuid.v4(),
         title:"This is my second item",
         content:"find your organic fruit amd veg",
         date: new Date()
     },
     {
-        id:-3,
+        id:uuid.v4(),
         title:"This is my third item",
         content:"find your organic fruit amd veg",
         date: new Date()
     },
-    {
-        id:-4,
-        title:"This is my fourth item",
-        content:"find your organic fruit amd veg",
-        date: new Date()
-    },
 ]
-const ListViewScreen = () => {
+const ListViewScreen = ({navigation}) => {
     const [items, setItems] = useState(dummyData);
+    const addNewItem = (title, content) =>{ 
+        setItems([
+            ...items,
+            {
+                id: uuid.v4(),
+                title:title,
+                content:content,
+                date: new Date()
+
+            }
+        ])
+    }
+    useEffect(() => {
+        navigation.setOptions({
+            headerRight: () => (
+                <Pressable onPress={() => navigation.navigate('Add', {callback:addNewItem})}>
+                <Text style={styles.iconText}>Add</Text><MaterialIcons name='add' size={28} color="black" />
+                </Pressable>
+            )
+        })
+    }, [items]);
   return (
         <View  style={styles.mainContainer}>
             <FlatList 
@@ -37,7 +53,14 @@ const ListViewScreen = () => {
                 keyExtractor={(e) => e.id.toString()}
                 renderItem={({item}) =>  {
                 return (
+                    <Pressable onPress={() => navigation.navigate('ViewItem', { 
+                        id: item.id,
+                        title: item.title,
+                        content: item.content,
+                        date:item.date.toUTCString()
+                     } )}>
                     <View style={styles.itemContainer}>
+
                         <View style={styles.dateContainer}>
                             <Text style={styles.dateText}>
                                 {item.date.toLocaleDateString()}
@@ -50,10 +73,12 @@ const ListViewScreen = () => {
                                 {item.title}
                             </Text>
                     </View>
+                    </Pressable>
                 );
                 }}
             />
         </View>
+        
     )
 };
 
@@ -90,6 +115,12 @@ const styles = StyleSheet.create({
         paddingLeft:15,
         flex:1,
         alignSelf:'flex-start',
+    },
+    iconText: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'centre'
     },
   });
 

@@ -1,22 +1,36 @@
 import React, { useState } from 'react'
 import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
 
-const AddItemScreen = () => {
-    const [name, setName] = useState('');
+
+const AddItemScreen = ({navigation, route}) => {
+    const {callback} = route.params;
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
   return (
-    <View>
-        <Text style={styles.textLabel}> Enter Fruit Name:</Text>
-        <TextInput 
-            style={styles.textInput} 
-            placeholder="Type here"
-            value={name}
-            onChangeText={(text) => {
-               setName(text);
-            }}
-        />
-        <Text style={styles.textLabel}>Your favorite fruit is {name}</Text>
-    </View>
-  )
+        <View>
+            <Text style={styles.textLabel}> Enter a title: </Text>
+            <TextInput 
+                style={styles.textInput} 
+                placeholder="Type title here" value={title}
+                onChangeText={(text) => {
+                setTitle(text);
+                }}
+            />
+            <Text style={styles.textLabel}> Enter your content: </Text>
+            <TextInput 
+                style={styles.textInput} multiline
+                placeholder="Type content here" value={content}
+                onChangeText={(text) => {
+                setContent(text);
+                }}
+            />
+            <Button style={styles.btn} title="Submit Item" onPress={() => {
+                callback(title, content);
+                navigation.pop();
+             }}
+            />
+        </View>
+  );
 };
 
 
@@ -31,6 +45,11 @@ const styles = StyleSheet.create({
         fontSize:18,
         paddingLeft:10,
         marginTop:10,
+    },
+    btn: {
+        borderWidth:1,
+        borderColor:'#006a6a',
+        borderRadius:5,
     },
 });
 

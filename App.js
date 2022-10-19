@@ -6,6 +6,7 @@ import ScreenTwo from './src/screen/ScreenTwo';
 import { StyleSheet } from 'react-native';
 import AddItemScreen from './src/screen/AddItemScreen';
 import ListViewScreen from './src/screen/ListViewScreen';
+import ViewItemScreen from './src/screen/ViewItemScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -36,7 +37,12 @@ const App = () =>{
         <Stack.Screen 
           name='ViewList'
           component={ListViewScreen}
-          options={{title: "View all items" }}
+          options={{title: "My Card" }}
+        />
+        <Stack.Screen 
+          name='ViewItem'
+          component={ViewItemScreen}
+          options={{title: "View items" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -45,10 +51,6 @@ const App = () =>{
 };
 
 const styles = StyleSheet.create({
-  btn: {
-    borderWidth:1,
-    borderColor:'#006a6a',
-    borderRadius:5,
-},
+  
 });
 export default App;

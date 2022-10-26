@@ -7,19 +7,19 @@ const dummyData = [
     {
         id:uuid.v4(),
         title:"This is my first item",
-        content:"find your organic fruit amd veg",
+        content:"find your organic fruit & veg",
         date: new Date()
     },
     {
         id:uuid.v4(),
         title:"This is my second item",
-        content:"find your organic fruit amd veg",
+        content:"find your organic fruit & veg",
         date: new Date()
     },
     {
         id:uuid.v4(),
         title:"This is my third item",
-        content:"find your organic fruit amd veg",
+        content:"find your organic fruit & veg",
         date: new Date()
     },
 ]
@@ -41,7 +41,7 @@ const ListViewScreen = ({navigation}) => {
         navigation.setOptions({
             headerRight: () => (
                 <Pressable onPress={() => navigation.navigate('Add', {callback:addNewItem})}>
-                <Text style={styles.iconText}>Add</Text><MaterialIcons name='add' size={28} color="black" />
+                    <MaterialIcons name='add' size={28} color="black" />
                 </Pressable>
             )
         })

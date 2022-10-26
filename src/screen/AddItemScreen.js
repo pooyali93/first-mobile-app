@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         marginTop:10,
     },
     btn: {
+        borderStartColor:'red',
         borderWidth:1,
         borderColor:'#006a6a',
         borderRadius:5,

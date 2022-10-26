@@ -25,7 +25,7 @@ const AddItemScreen = ({navigation, route}) => {
                 }}
             />
             <Button style={styles.btn} title="Submit Item" onPress={() => {
-                callback(title, content);
+                callback({title: title, content: content});
                 navigation.pop();
              }}
             />

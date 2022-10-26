@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer} from "react";
 import { View, StyleSheet, Text, FlatList, Pressable} from "react-native"
 import {MaterialIcons} from '@expo/vector-icons'
 import uuid from 'react-native-uuid';
+import { actionType } from "../helpers/actionType";
+import { Button } from "react-native-web";
 
 const dummyData = [
     {
@@ -25,31 +27,51 @@ const dummyData = [
 ]
 const ListViewScreen = ({navigation}) => {
     const [items, setItems] = useState(dummyData);
-    const addNewItem = (title, content) =>{ 
-        setItems([
-            ...items,
-            {
-                id: uuid.v4(),
-                title:title,
-                content:content,
-                date: new Date()
-
-            }
-        ])
-    }
+    const [state, dispatch] = useReducer(reducer, dummyData)
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case actionType.create:
+                [
+                    ...state,
+                    {
+                        id: uuid.v4(),
+                        title:action.payload.title,
+                        content:action.payload.content,
+                        date: new Date()
+        
+                    }
+                ];
+                case actionType.update:
+                    return state.map((item) => {
+                        if(item.id === action.payload.id) {
+                            return action.payload;
+                        }else {
+                            return item;
+                        }
+                    });
+                case actionType.delete: 
+                    return state.filter((item) => item.id !== action.payload.id);
+                default:
+                    return state;
+        }
+    };
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-                <Pressable onPress={() => navigation.navigate('Add', {callback:addNewItem})}>
-                    <MaterialIcons name='add' size={28} color="black" />
+                <Pressable onPress={() => navigation.navigate('Add', {callback:(payload) => {
+                    dispatch({type: actionType.create, payload, payload});
+                    }
+                })
+                }>
+                    <MaterialIcons name='add-to-list' size={28} color="black" />
                 </Pressable>
             )
         })
-    }, [items]);
+    }, [state]);
   return (
         <View  style={styles.mainContainer}>
             <FlatList 
-                data={items}
+                data={state}
                 keyExtractor={(e) => e.id.toString()}
                 renderItem={({item}) =>  {
                 return (
@@ -72,7 +94,9 @@ const ListViewScreen = ({navigation}) => {
                             <Text style={styles.titleText}> 
                                 {item.title}
                             </Text>
+                            <Pressable><MaterialIcons name='delete' size={28} color="black" /></Pressable>
                     </View>
+                    
                     </Pressable>
                 );
                 }}

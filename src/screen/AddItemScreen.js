@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
 import { Text, View, StyleSheet, Button, TextInput } from 'react-native';
+import ItemContext from '../contexts/ItemContext';
 
 
-const AddItemScreen = ({navigation, route}) => {
-    const {callback} = route.params;
+const AddItemScreen = ({navigation}) => {
+    const {create} = useContext(ItemContext);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
   return (
@@ -25,8 +26,7 @@ const AddItemScreen = ({navigation, route}) => {
                 }}
             />
             <Button style={styles.btn} title="Submit Item" onPress={() => {
-                callback({title: title, content: content});
-                navigation.pop();
+                create(title, content,() => navigation.pop());
              }}
             />
         </View>

@@ -7,45 +7,54 @@ import { StyleSheet } from 'react-native';
 import AddItemScreen from './src/screen/AddItemScreen';
 import ListViewScreen from './src/screen/ListViewScreen';
 import ViewItemScreen from './src/screen/ViewItemScreen';
+import { ItemProvider } from './src/contexts/ItemContext';
+import EditItemScreen from './src/screen/EditItemScreen';
 
 
 const Stack = createNativeStackNavigator();
 const App = () =>{
   return (
-    <NavigationContainer >
-      <Stack.Navigator initialRouteName='IndexScreen'>
-        <Stack.Screen 
-          name='IndexScreen'
-          component={IndexScreen}
-          options={{title: "Shop Organic Fruit & Veg" }}
-        />
-        <Stack.Screen
-          name='ScreenOne'
-          component={ScreenOne}
-          options={{title: "Screen 1" }}
-        />
-        <Stack.Screen
-          name='ScreenTwo'
-          component={ScreenTwo}
-          options={{title: "Screen 2" }}
-        />
-        <Stack.Screen
-          name='Add'
-          component={AddItemScreen}
-          options={{title: "Add a new item" }}
-        />
-        <Stack.Screen 
-          name='ViewList'
-          component={ListViewScreen}
-          options={{title: "My Card" }}
-        />
-        <Stack.Screen 
-          name='ViewItem'
-          component={ViewItemScreen}
-          options={{title: "View items" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <ItemProvider>
+      <NavigationContainer >
+        <Stack.Navigator initialRouteName='IndexScreen'>
+          <Stack.Screen 
+            name='IndexScreen'
+            component={IndexScreen}
+            options={{title: "Shop Organic Fruit & Veg" }}
+          />
+          <Stack.Screen
+            name='ScreenOne'
+            component={ScreenOne}
+            options={{title: "Screen 1" }}
+          />
+          <Stack.Screen
+            name='ScreenTwo'
+            component={ScreenTwo}
+            options={{title: "Screen 2" }}
+          />
+          <Stack.Screen
+            name='Add'
+            component={AddItemScreen}
+            options={{title: "Add a new item" }}
+          />
+          <Stack.Screen
+            name='Edit'
+            component={EditItemScreen}
+            options={{title: "Update  a Single item" }}
+          />
+          <Stack.Screen 
+            name='ViewList'
+            component={ListViewScreen}
+            options={{title: "My Card" }}
+          />
+          <Stack.Screen 
+            name='ViewItem'
+            component={ViewItemScreen}
+            options={{title: "View items" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ItemProvider>
       
   );
 };
